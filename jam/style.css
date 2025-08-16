@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+
+body {
+    /* ganti ke nuansa navy gelap ala porto */
+    background: linear-gradient(135deg, #071735, #0d2a44, #0f1b2d);
+    color: #E6F5F0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.clock-container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03); /* sedikit lebih gelap */
+    padding: 30px;
+    border-radius: 20px;
+    /* ganti glow ungu -> teal */
+    box-shadow: 0 0 20px rgba(16, 163, 127, 0.25);
+    animation: fadeIn 1s ease-in-out;
+}
+
+.clock-container h2 {
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    color: #10A37F; /* aksen teal */
+}
+
+.time-box {
+    display: inline-block;
+    margin: 0 10px;
+    background: #0f2a44; /* navy lembut biar konsisten */
+    padding: 15px 20px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    /* ganti shadow ke teal */
+    box-shadow: 0 0 15px rgba(16, 163, 127, 0.35);
+    transition: transform 0.3s ease;
+}
+
+.time-box:hover {
+    transform: scale(1.1);
+}
+
+.time {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #10A37F; /* angka jam pakai teal */
+}
+
+#date {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #CFEFE8; /* teks terang lembut */
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
