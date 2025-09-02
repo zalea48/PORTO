@@ -1,37 +1,43 @@
-const input = document.getElementById("task-input");
-const list = document.getElementById("task-list");
-
 function addTask() {
-  if (input.value.trim() === "") return;
+  const taskInput = document.getElementById("task-input");
+  const dateInput = document.getElementById("task-date");
+  const priorityInput = document.getElementById("task-priority");
+  const taskList = document.getElementById("task-list");
 
-  const li = document.createElement("li");
-  li.innerHTML = `
-    <span onclick="toggleTask(this)">${input.value}</span>
-    <button class="delete" onclick="deleteTask(this)">X</button>
+  const taskText = taskInput.value.trim();
+  const taskDate = dateInput.value;
+  const taskPriority = priorityInput.value;
+
+  if (taskText === "" || taskDate === "") {
+    alert("Isi tugas dan tanggal terlebih dahulu!");
+    return;
+  }
+
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td>${taskText}</td>
+    <td>${new Date(taskDate).toLocaleString()}</td>
+    <td class="priority-${taskPriority.replace(" ", "\\ ")}">${taskPriority}</td>
+    <td>
+      <button class="action-btn complete-btn" onclick="completeTask(this)">Selesai</button>
+      <button class="action-btn delete-btn" onclick="deleteTask(this)">Hapus</button>
+    </td>
   `;
-  list.appendChild(li);
-  input.value = "";
+
+  taskList.appendChild(row);
+
+  taskInput.value = "";
+  dateInput.value = "";
+  priorityInput.value = "Urgent";
 }
 
-function toggleTask(el) {
-  el.parentElement.classList.toggle("done");
-  if (el.parentElement.classList.contains("done")) {
-    launchConfetti();
-  }
+function completeTask(btn) {
+  const row = btn.parentElement.parentElement;
+  row.classList.toggle("completed");
 }
 
-function deleteTask(el) {
-  el.parentElement.remove();
-}
-
-// Confetti effect
-function launchConfetti() {
-  for (let i = 0; i < 15; i++) {
-    const confetti = document.createElement("div");
-    confetti.classList.add("confetti");
-    document.body.appendChild(confetti);
-    confetti.style.left = Math.random() * window.innerWidth + "px";
-    confetti.style.background = `hsl(${Math.random() * 360}, 100%, 70%)`;
-    setTimeout(() => confetti.remove(), 3000);
-  }
+function deleteTask(btn) {
+  const row = btn.parentElement.parentElement;
+  row.remove();
 }

@@ -4,18 +4,35 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>To Do List</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="todo.css">
 </head>
 <body>
 
   <div class="todo-container">
-    <h2>✨ To Do List ✨</h2>
+    <h2>📋 To Do List</h2>
     <div class="input-group">
-      <input type="text" id="task-input" placeholder="Add a new task...">
-      <button onclick="addTask()">Add</button>
+      <input type="text" id="task-input" placeholder="Tulis kegiatan...">
+      <input type="datetime-local" id="task-date">
+      <select id="task-priority">
+        <option value="Urgent">🔥 Urgent</option>
+        <option value="Semi Urgent">⚡ Semi Urgent</option>
+        <option value="Impossible">🌀 Impossible</option>
+      </select>
+      <button onclick="addTask()">Tambah</button>
     </div>
-    <ul id="task-list"></ul>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Tugas</th>
+          <th>Deadline</th>
+          <th>Prioritas</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="task-list"></tbody>
+    </table>
   </div>
 
   <script src="todo.js"></script>
